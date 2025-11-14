@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'screens/home_screen.dart';
 
 Future<void> main() async {
@@ -8,6 +9,9 @@ Future<void> main() async {
 
   // .envファイルをロード
   await dotenv.load(fileName: '.env');
+
+  // 日本語ロケールを初期化
+  await initializeDateFormatting('ja_JP');
 
   runApp(
     const ProviderScope(
