@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/weather.dart';
+import '../utils/weather_icon_helper.dart';
 
 class ForecastList extends StatelessWidget {
   final WeatherForecast forecast;
@@ -61,16 +62,10 @@ class _ForecastItem extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          Image.network(
-            'https://openweathermap.org/img/wn/${forecast.icon}@2x.png',
-            width: 50,
-            height: 50,
-            errorBuilder: (context, error, stackTrace) {
-              return const Icon(
-                Icons.cloud,
-                size: 50,
-              );
-            },
+          WeatherIconHelper.getWeatherIcon(
+            forecast.icon,
+            forecast.description,
+            size: 50,
           ),
           const SizedBox(width: 8),
           Expanded(

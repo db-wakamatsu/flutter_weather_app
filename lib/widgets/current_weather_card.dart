@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/weather.dart';
+import '../utils/weather_icon_helper.dart';
 
 class CurrentWeatherCard extends StatelessWidget {
   final Weather weather;
@@ -36,16 +37,10 @@ class CurrentWeatherCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.network(
-                  'https://openweathermap.org/img/wn/${weather.icon}@4x.png',
-                  width: 120,
-                  height: 120,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Icon(
-                      Icons.cloud,
-                      size: 120,
-                    );
-                  },
+                WeatherIconHelper.getWeatherIcon(
+                  weather.icon,
+                  weather.description,
+                  size: 120,
                 ),
                 const SizedBox(width: 20),
                 Column(
